@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S & P Global - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e8f4ff 0%, #d6e7ff 100%);
+            min-height: 100vh;
+            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 400px;
+            margin-bottom: 0;
+            flex: 1;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #3a6ea5 0%, #2a5a8c 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+            position: relative;
+            min-height: 100px;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+        
+        .home-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        .home-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            z-index: 100;
+        }
+        
+        .page-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 20px;
+            background-color: #f0f7ff;
+            border-bottom: 1px solid #c8d8e8;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn {
+            padding: 14px 25px;
+            background-color: white;
+            border: 2px solid #3a6ea5;
+            border-radius: 10px;
+            color: #3a6ea5;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 280px;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            white-space: nowrap;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .page-btn:hover {
+            background-color: #3a6ea5;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(58, 110, 165, 0.2);
+        }
+        
+        .page-btn.active {
+            background-color: #2a5a8c;
+            color: white;
+            border-color: #2a5a8c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(42, 90, 140, 0.2);
+        }
+        
+        .page-btn i {
+            font-size: 1.1rem;
+        }
+        
+        .content-area {
+            min-height: 500px;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        .welcome-section h2 {
+            color: #2a5a8c;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        .welcome-section p {
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .welcome-section .btn {
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #3a6ea5 0%, #2a5a8c 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .welcome-section .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 110, 165, 0.3);
+        }
+        
+        .outer-footer {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 1200px;
+            width: calc(100% - 40px);
+            text-align: center;
+            padding: 20px 30px;
+            color: white;
+            font-size: 0.85rem;
+            background: linear-gradient(90deg, #3a6ea5 0%, #2a5a8c 100%);
+            z-index: 1000;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .inner-footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(90deg, #3a6ea5 0%, #2a5a8c 100%);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-buttons {
+                padding: 15px;
+                gap: 10px;
+                position: absolute;
+                top: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                z-index: 99;
+                display: none;
+            }
+            
+            .page-buttons.show {
+                display: flex;
+            }
+            
+            .page-btn {
+                width: 100%;
+                max-width: 260px;
+                padding: 12px 18px;
+                font-size: 0.95rem;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .content-area {
+                padding: 30px 15px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .welcome-section p {
+                font-size: 1rem;
+            }
+            
+            .outer-footer {
+                font-size: 0.8rem;
+                padding: 15px 20px;
+                width: calc(100% - 30px);
+                min-height: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-buttons {
+                gap: 8px;
+            }
+            
+            .page-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .outer-footer {
+                padding: 12px 15px;
+                width: calc(100% - 20px);
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-footer" id="outerFooter">
+        © 2025 meman.sakirmahammad@spglobal.com. All Rights Reserved.
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="home-button" onclick="window.location.href='index.html'" title="Back to Home">
+                <i class="fas fa-home"></i>
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle" title="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <h1>S & P Global</h1>
+            <p>Assets Intelligence</p>
+        </header>
+        
+        <div class="page-buttons" id="pageButtons">
+            <a href="index.html" class="page-btn active">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="converter.html" class="page-btn">
+                <i class="fas fa-exchange-alt"></i> Baidu to Google Converter
+            </a>
+            <a href="page2.html" class="page-btn">
+                <i class="fas fa-file-alt"></i> Page 2
+            </a>
+            <a href="page3.html" class="page-btn">
+                <i class="fas fa-file-alt"></i> Page 3
+            </a>
+        </div>
+        
+        <div class="content-area">
+            <div class="welcome-section">
+                <h2>Welcome to Assets Intelligence Tools</h2>
+                <p>Access powerful tools for data conversion and analysis. Click on any tool below to get started with your workflow.</p>
+                <a href="converter.html" class="btn">
+                    <i class="fas fa-exchange-alt"></i> Go to Baidu Converter
+                </a>
+            </div>
+        </div>
+        
+        <footer class="inner-footer" id="innerFooter">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                <div id="footerStatusBar">Ready</div>
+                <div>Developer: Meman Sakirmahammad on behalf of the Assets Intelligence Department</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const pageButtons = document.getElementById('pageButtons');
+            
+            if (menuToggle && pageButtons) {
+                menuToggle.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        pageButtons.classList.toggle('show');
+                    }
+                });
+                
+                // Close menu when clicking outside on mobile
+                document.addEventListener('click', function(event) {
+                    if (window.innerWidth <= 768) {
+                        if (!pageButtons.contains(event.target) && 
+                            !menuToggle.contains(event.target)) {
+                            pageButtons.classList.remove('show');
+                        }
+                    }
+                });
+            }
+            
+            // Highlight active page in navigation
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const pageLinks = document.querySelectorAll('.page-btn');
+            
+            pageLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
